@@ -2,7 +2,9 @@ This is a modified version of SNMP4J 2.5.3 (http://snmp4j.org) SNMP4J was using 
 
 To make it a OSGI bundle, first download bnd-2.4.0.jar from http://central.maven.org/maven2/biz/aQute/bnd/bnd/2.4.0/bnd-2.4.0.jar
 Then execute
+```
 java -jar bnd-2.4.0.jar wrap -p bnd.properties -o snmp4j-2.5.3-osgibundle.jar snmp4j-2.5.3.jar
+```
 with bnd.propeties given as follows:
 ```
 version: 2.5.3
