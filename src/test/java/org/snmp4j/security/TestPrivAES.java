@@ -21,16 +21,18 @@
 
 package org.snmp4j.security;
 
-import org.apache.log4j.*;
 import junit.framework.*;
 import org.snmp4j.SNMP4JSettings;
 import org.snmp4j.smi.OID;
 import org.snmp4j.smi.OctetString;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class TestPrivAES
     extends TestCase {
-  static Logger cat = Logger.getLogger(TestPrivAES.class);
+  static Logger cat = Logger.getLogger(TestPrivAES.class.getName());
   private SecurityProtocols secProts;
 
   public static String asHex(byte buf[]) {
@@ -51,8 +53,6 @@ public class TestPrivAES
   }
 
   public static void testCrypt() {
-    BasicConfigurator.configure();
-
     PrivAES128 pd = new PrivAES128();
     DecryptParams pp = new DecryptParams();
     byte[] key = {
@@ -73,12 +73,12 @@ public class TestPrivAES
     int engine_boots = 0xdeadc0de;
     int engine_time = 0xbeefdede;
 
-    cat.debug("Cleartext: " + asHex(plaintext));
+    cat.log(Level.FINE, "Cleartext: " + asHex(plaintext));
     ciphertext = pd.encrypt(plaintext, 0, plaintext.length, key, engine_boots,
                             engine_time, pp);
-    cat.debug("Encrypted: " + asHex(ciphertext));
+    cat.log(Level.FINE, "Encrypted: " + asHex(ciphertext));
     decrypted = pd.decrypt(ciphertext, 0, ciphertext.length, key, engine_boots, engine_time, pp);
-    cat.debug("Cleartext: " + asHex(decrypted));
+    cat.log(Level.FINE, "Cleartext: " + asHex(decrypted));
 
     assertEquals(asHex(plaintext), asHex(decrypted));
 

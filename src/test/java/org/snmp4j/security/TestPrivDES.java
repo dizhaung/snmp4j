@@ -21,9 +21,11 @@
 
 package org.snmp4j.security;
 
-import org.apache.log4j.*;
-import junit.framework.*;
+import junit.framework.TestCase;
 import org.snmp4j.smi.OctetString;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestPrivDES
     extends TestCase {
@@ -46,8 +48,6 @@ public class TestPrivDES
 
   public static void testEncrypt()
   {
-      BasicConfigurator.configure();
-
       PrivDES pd = new PrivDES();
       DecryptParams pp = new DecryptParams();
       byte[] key = "1234567890123456".getBytes();
@@ -59,11 +59,11 @@ public class TestPrivDES
       int engine_boots = 1;
       int engine_time = 2;
 
-      cat.debug("Cleartext: " + asHex(plaintext));
+      cat.log(Level.FINE, "Cleartext: " + asHex(plaintext));
       ciphertext = pd.encrypt(plaintext, 0, plaintext.length, key, engine_boots, engine_time, pp);
-      cat.debug("Encrypted: " + asHex(ciphertext));
+      cat.log(Level.FINE, "Encrypted: " + asHex(ciphertext));
       decrypted = pd.decrypt(ciphertext, 0, ciphertext.length, key, engine_boots, engine_time, pp);
-      cat.debug("Cleartext: " + asHex(decrypted));
+      cat.log(Level.FINE, "Cleartext: " + asHex(decrypted));
 
       for (int i = 0; i < plaintext.length; i++) {
 	      assertEquals(plaintext[i], decrypted[i]);

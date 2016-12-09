@@ -45,8 +45,7 @@ public class SnmpRequest implements CommandResponder, PDUFactory {
 
   // initialize Java logging
   static {
-    LogFactory.setLogFactory(new Log4jLogFactory());
-    org.apache.log4j.BasicConfigurator.configure();
+    LogFactory.setLogFactory(new JavaLogFactory());
     BER.setCheckSequenceLength(false);
   }
 

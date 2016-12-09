@@ -23,11 +23,13 @@ package org.snmp4j.security;
 
 import org.snmp4j.smi.OctetString;
 import junit.framework.*;
-import org.apache.log4j.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestAuthMD5
     extends TestCase {
-  static Logger cat = Logger.getLogger(TestAuthMD5.class);
+  static Logger cat = Logger.getLogger(TestAuthMD5.class.getName());
 
   public TestAuthMD5(String name) {
 
@@ -120,7 +122,6 @@ public class TestAuthMD5
   }
 
   public void testAuth(){
-    BasicConfigurator.configure();
     byte[] msg = {
         (byte) 0x30, (byte) 0x7A, (byte) 0x02, (byte) 0x01,
         (byte) 0x03, (byte) 0x30, (byte) 0x0F, (byte) 0x02,
@@ -173,16 +174,16 @@ public class TestAuthMD5
         (byte) 0x68, (byte) 0x20, (byte) 0xC6, (byte) 0xB0
     };
     AuthMD5 auth = new AuthMD5();
-    cat.debug("start authenticate");
-    cat.debug("msg before: " + asHex(msg));
+    cat.log(Level.FINE, "start authenticate");
+    cat.log(Level.FINE, "msg before: " + asHex(msg));
     boolean res = auth.authenticate(key, msg, 0,
                                     msg.length,
                                     new ByteArrayWindow(msg, 59, 12));
-    cat.debug("msg after: " + asHex(msg));
+    cat.log(Level.FINE, "msg after: " + asHex(msg));
 
     assertEquals(true, res);
     for (int i = 0; i < 12; i++) {
-      cat.debug("" + i);
+      cat.log(Level.FINE, "" + i);
       assertEquals(expectedDigest[i], msg[59+i]);
     }
   }

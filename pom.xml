@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.snmp4j</groupId>
     <artifactId>snmp4j</artifactId>
@@ -20,7 +21,7 @@
         </developer>
     </developers>
     <scm>
-		<url>scm:git:git@oosnmp.net:snmp4j.git</url>
+        <url>scm:git:git@oosnmp.net:snmp4j.git</url>
         <developerConnection>scm:git:git@oosnmp.net:snmp4j.git</developerConnection>
     </scm>
     <licenses>
@@ -131,12 +132,6 @@
             <version>4.8</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.14</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
     <build>
         <outputDirectory>classes</outputDirectory>
@@ -218,8 +213,8 @@
                     <windowtitle>${project.name} ${project.version}</windowtitle>
                     <excludePackageNames>org.snmp4j.test:org.snmp4j.test.tools.console</excludePackageNames>
                     <show>protected</show>
-                    <version />
-                    <author />
+                    <version/>
+                    <author/>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
